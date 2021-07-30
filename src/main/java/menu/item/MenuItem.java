@@ -1,7 +1,5 @@
 package menu.item;
 
-import menu.comand.Command;
-
 public class MenuItem {
     private final int number;
     private final String name;
