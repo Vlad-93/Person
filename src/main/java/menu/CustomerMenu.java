@@ -3,19 +3,19 @@ package menu;
 import menu.comand.Command;
 import menu.item.MenuItem;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class CustomerMenu extends StandardMenu {
     // Содержит названия команд (key) и сами команды (value)
-    private final HashMap<MenuItem, Command> commands = new HashMap<>();
-
-    MenuItem add = new MenuItem(1, "Add");
-    MenuItem show = new MenuItem(2, "Show");
-    MenuItem showSortedUnique = new MenuItem(3, "Show sorted unique");
-    MenuItem exit = new MenuItem(4, "Exit");
+    private final LinkedHashMap<MenuItem, Command> commands = new LinkedHashMap<>();
 
     public CustomerMenu() {
+        MenuItem add = new MenuItem(1, "Add");
+        MenuItem show = new MenuItem(2, "Show");
+        MenuItem showSortedUnique = new MenuItem(3, "Show sorted unique");
+        MenuItem exit = new MenuItem(4, "Exit");
+
         Command addCommand = () -> {
             Scanner scanner = new Scanner(System.in);
 
@@ -48,8 +48,10 @@ public class CustomerMenu extends StandardMenu {
             if (commandName.equals("exit") )
                 return;
 
-            if (commands.containsKey(commandName))
-                commands.get(commandName).exec();
+            MenuItem item = new MenuItem(commandName);
+
+            if (commands.containsKey(item))
+                commands.get(item).exec();
             else
                 System.out.println("Unsupported command");
         }

@@ -1,8 +1,6 @@
 package person;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 public class PersonListHandler implements AutoCloseable {
     private final List<Person> personList;
@@ -28,10 +26,11 @@ public class PersonListHandler implements AutoCloseable {
     }
 
     public void showSortedUnique() {
-        TreeSet<Person> set = new TreeSet<>(personList);
+        List<Person> sortedPersonList = new ArrayList<>(personList);
 
-        for (Person person : set)
-            System.out.println(person);
+        Collections.sort(sortedPersonList);
+        PersonListHandler listHandler = new PersonListHandler(sortedPersonList);
+        System.out.println(listHandler);
     }
 
     @Override
